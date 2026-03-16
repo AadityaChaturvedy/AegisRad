@@ -1,0 +1,11 @@
+onnxruntime
+transformers
+sentencepiece
+protobuf
+gradio
+Pillow
+numpy
+pandas
+accelerate
+llama-cpp-python
+hi-ml-multimodal
