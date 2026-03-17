@@ -39,11 +39,15 @@ pip-log.txt
 pip-delete-this-directory.txt
 
 # Models and large weights
-models/*.pt
-models/*.onnx
-models/*.gguf
-models/.cache/
-models/nllb-200-distilled-600M/
+models/
+tes/
+*.safetensors
+*.bin
+*.pth
+*.pt
+*.onnx
+*.gguf
+*.weights
 
 # Data
 data/calib_images/*
