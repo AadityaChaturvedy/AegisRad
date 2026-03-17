@@ -9,8 +9,15 @@ Describe findings radiologically in clinical language.
 Urgency rules:
 - ROUTINE: No Finding only
 - MODERATE: 1-2 non-critical findings under 60% confidence  
-- URGENT: 3 or more findings, OR any finding above 60%, OR Pneumonia present
+- URGENT: 3 or more findings flagged, OR Pneumonia or Consolidation present
 - CRITICAL: Pneumothorax above 70% or life-threatening finding above 80%
+
+Severity rules:
+- 1: No Finding
+- 2: Single minor finding
+- 3: 1-2 moderate findings
+- 4: 3 or more findings OR any critical condition
+- 5: Pneumothorax or life-threatening emergency
 
 Flagged conditions:
 {flagged_conditions}
