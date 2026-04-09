@@ -1,51 +1,37 @@
-import numpy as np
-import platform
-from config import ENCODER_TRT
-
-IS_JETSON = platform.machine() == "aarch64"
-
-if IS_JETSON:
-    import tensorrt as trt
-    import pycuda.driver as cuda
-    import pycuda.autoinit
-else:
-    import onnxruntime as ort
+import torch
+from aegisrad.models import VisionEncoder
 
 
 class BioViLEncoder:
-    def __init__(self):
-        if IS_JETSON:
-            logger = trt.Logger(trt.Logger.WARNING)
-            with open(ENCODER_TRT, "rb") as f:
-                runtime     = trt.Runtime(logger)
-                self.engine = runtime.deserialize_cuda_engine(f.read())
-            self.context = self.engine.create_execution_context()
-            self.mode    = "trt"
-            print("[AegisRad] BioViL-T encoder loaded (TensorRT).")
+    def __init__(self, state_dict=None):
+        if torch.cuda.is_available():
+            self.device = torch.device('cuda')
+        elif torch.backends.mps.is_available():
+            self.device = torch.device('mps')
         else:
-            self.session = ort.InferenceSession(
-                "models/biovil_encoder.onnx",
-                providers=["CPUExecutionProvider"]
-            )
-            self.mode = "onnx"
-            print("[AegisRad] BioViL-T encoder loaded (ONNX).")
+            self.device = torch.device('cpu')
 
-    def encode(self, image: np.ndarray):
-        if self.mode == "onnx":
-            outputs  = self.session.run(None, {"image": image})
-            features = outputs[0]   # [1, 2048, 7, 7]
-            pooled   = outputs[1]   # [1, 2048]
-            return features, pooled
+        # Create model architecture
+        self.model = VisionEncoder()
 
-        # TensorRT path (Jetson only)
-        input_mem  = cuda.mem_alloc(image.nbytes)
-        features   = np.empty((1, 2048, 7, 7), dtype=np.float32)
-        pooled     = np.empty((1, 2048), dtype=np.float32)
-        feat_mem   = cuda.mem_alloc(features.nbytes)
-        pool_mem   = cuda.mem_alloc(pooled.nbytes)
+        # Load weights from shared state_dict (avoids redundant torch.load)
+        if state_dict is not None:
+            self.model.load_state_dict(state_dict)
 
-        cuda.memcpy_htod(input_mem, image)
-        self.context.execute_v2([int(input_mem), int(feat_mem), int(pool_mem)])
-        cuda.memcpy_dtoh(features, feat_mem)
-        cuda.memcpy_dtoh(pooled,   pool_mem)
+        # Convert to half-precision to save ~45 MB of RAM
+        self.model.half()
+        self.model.eval()
+        self.model.to(self.device)
+
+        print(f"[AegisRad] BioViL-T encoder loaded (fp16, device: {self.device}).")
+
+    def encode(self, image):
+        """Accept preprocessed numpy array or torch tensor.
+        Returns (features, pooled) as torch tensors on self.device."""
+        if not isinstance(image, torch.Tensor):
+            image = torch.from_numpy(image)
+        image = image.to(device=self.device, dtype=torch.float16)
+
+        with torch.no_grad():
+            features, pooled = self.model(image)
         return features, pooled

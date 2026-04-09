@@ -5,12 +5,14 @@ from config import NLLB_MODEL_DIR, NLLB_MAX_TOKENS, LANGUAGES
 
 class NLLBTranslator:
     def __init__(self):
-        print("[AegisRad] Loading NLLB-200 translator...")
+        self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+        print(f"[AegisRad] Loading NLLB-200 translator on {self.device}...")
+        
         self.tokenizer = AutoTokenizer.from_pretrained(NLLB_MODEL_DIR)
         self.model     = AutoModelForSeq2SeqLM.from_pretrained(
             NLLB_MODEL_DIR,
-            dtype=torch.float16
-        )
+            torch_dtype=torch.float16
+        ).to(self.device)
         self.model.eval()
         print("[AegisRad] NLLB-200 loaded.")
 
@@ -27,10 +29,15 @@ class NLLBTranslator:
             padding=True,
             truncation=True,
             max_length=512
-        )
+        ).to(self.device)
 
-        # Get target language token id correctly
-        target_lang_id = self.tokenizer.convert_tokens_to_ids(target_code)
+        # Get target language token id correctly from lang_code_to_id
+        # NLLB tokenizer has a specific mapping for this
+        try:
+            target_lang_id = self.tokenizer.lang_code_to_id[target_code]
+        except AttributeError:
+            # Fallback if the specific attribute is missing
+            target_lang_id = self.tokenizer.convert_tokens_to_ids(target_code)
 
         with torch.no_grad():
             outputs = self.model.generate(

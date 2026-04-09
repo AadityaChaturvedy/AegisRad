@@ -1,32 +1,35 @@
-import numpy as np
-import platform
-from config import QFORMER_ONNX
-
-IS_JETSON = platform.machine() == "aarch64"
-import onnxruntime as ort
+import torch
+from aegisrad.models import QFormer
 
 
 class RRAQAdapter:
-    """
-    RRA-Q Adapter Module
-    Custom Q-Former variant with ungrounded token penalization.
-    Trained on MIMIC-CXR via RRA pipeline.
-    """
-    def __init__(self):
-        providers = (
-            ["CUDAExecutionProvider", "CPUExecutionProvider"]
-            if IS_JETSON else
-            ["CPUExecutionProvider"]
-        )
-        self.session = ort.InferenceSession(
-            "models/rra_qadapter.onnx",
-            providers=providers
-        )
-        print("[AegisRad] RRA-Q Adapter loaded.")
+    def __init__(self, state_dict=None):
+        if torch.cuda.is_available():
+            self.device = torch.device('cuda')
+        elif torch.backends.mps.is_available():
+            self.device = torch.device('mps')
+        else:
+            self.device = torch.device('cpu')
 
-    def extract_queries(self, visual_features: np.ndarray) -> np.ndarray:
-        outputs = self.session.run(
-            None,
-            {"visual_features": visual_features}
-        )
-        return outputs[0]   # [1, 32, 2048]
+        self.model = QFormer()
+
+        if state_dict is not None:
+            self.model.load_state_dict(state_dict)
+
+        self.model.half()
+        self.model.eval()
+        self.model.to(self.device)
+
+        print(f"[AegisRad] RRA-Q Adapter loaded (fp16, device: {self.device}).")
+
+    def extract_queries(self, visual_features):
+        """Accept visual features as torch tensor [B, 2048, 7, 7].
+        Returns query embeddings as torch tensor [B, 32, 2048]."""
+        if not isinstance(visual_features, torch.Tensor):
+            visual_features = torch.from_numpy(visual_features)
+        visual_features = visual_features.to(device=self.device,
+                                             dtype=torch.float16)
+
+        with torch.no_grad():
+            queries = self.model(visual_features)
+        return queries
