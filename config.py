@@ -3,7 +3,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # Model paths
-ENCODER_TRT  = os.path.join(BASE_DIR, "models/biovil_encoder.trt")
+ENCODER_ONNX  = os.path.join(BASE_DIR, "models/biovil_encoder.onnx")
 CLASSIFIER_PT = os.path.join(BASE_DIR, "models/biovil_classifier.pt")
 QFORMER_ONNX = os.path.join(BASE_DIR, "models/rra_qadapter.onnx")
 PROJECTOR_PT = os.path.join(BASE_DIR, "models/projector.pt")
@@ -31,7 +31,15 @@ GEMMA_GPU_LAYERS = 20
 NLLB_MAX_TOKENS = 256
 
 # Classification
-CONFIDENCE_THRESHOLD = 0.5
+CLASS_THRESHOLDS = {
+    'No Finding': 0.55, 'Enlarged Cardiomediastinum': 0.57, 'Cardiomegaly': 0.47,
+    'Lung Opacity': 0.56, 'Lung Lesion': 0.5, 'Edema': 0.42,
+    'Consolidation': 0.4, 'Pneumonia': 0.58, 'Atelectasis': 0.61,
+    'Pneumothorax': 0.59, 'Pleural Effusion': 0.39, 'Pleural Other': 0.49,
+    'Fracture': 0.44, 'Support Devices': 0.56
+}
+
+CONFIDENCE_THRESHOLD = 0.5 # Default fallback
 CONDITIONS = [
     "No Finding", "Enlarged Cardiomediastinum", "Cardiomegaly",
     "Lung Opacity", "Lung Lesion", "Edema", "Consolidation",
