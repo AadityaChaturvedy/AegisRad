@@ -1,0 +1,10 @@
+flask
+torch
+torchvision
+pillow
+numpy
+tqdm
+llama-cpp-python
+pandas
+rouge-score
+nltk

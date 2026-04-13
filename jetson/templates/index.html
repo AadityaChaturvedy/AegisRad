@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AegisRad Nano | AI Radiology</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="dashboard">
+        <!-- Header Section -->
+        <header class="card header-card">
+            <div class="header-left">
+                <h1 style="font-size: 1.5rem; color: var(--accent-blue); line-height: 1.2;">AegisRad Nano</h1>
+                <p style="color: var(--text-secondary); font-size: 0.8rem;">Multimodal Vision-Language Triage</p>
+            </div>
+            <div class="header-right" style="display: flex; gap: 1.5rem; align-items: center;">
+                <div id="runtime-display"
+                    style="font-size: 0.85rem; color: var(--text-secondary); font-family: monospace;"></div>
+                <label for="file-input" class="upload-btn">Upload X-Ray</label>
+                <input type="file" id="file-input" accept="image/*">
+            </div>
+        </header>
+
+        <!-- X-Ray Card -->
+        <section class="card image-card">
+            <div class="card-header">
+                <span class="card-title">Chest X-Ray</span>
+            </div>
+            <div id="xray-preview">
+                <p style="color: var(--text-secondary); font-size: 0.9rem;">No Image Loaded</p>
+            </div>
+            <div id="loading" class="loading">Analyzing visual queries...</div>
+        </section>
+
+        <!-- Ailments Card -->
+        <section class="card ailments-card">
+            <div class="card-header">
+                <span class="card-title">Ailments Detected</span>
+            </div>
+            <div id="ailments-list" class="tag-list">
+                <p style="color: var(--text-secondary); font-size: 0.9rem;">Waiting for analysis...</p>
+            </div>
+        </section>
+
+        <!-- Report Card -->
+        <section class="card report-card">
+            <div class="card-header">
+                <span class="card-title">Generative Radiology Report</span>
+            </div>
+            <div id="report-text" class="report-body">Please upload a Chest PA/Lateral view to begin the high-fidelity
+                report generation</div>
+        </section>
+
+        <!-- Recommendation Card -->
+        <section class="card recommendation-card">
+            <div class="card-header">
+                <span class="card-title">Recommendations</span>
+            </div>
+            <div id="recommendation-text" class="recommendation-body">
+                Awaiting clinical findings...
+            </div>
+        </section>
+    </div>
+
+    <script>
+        const fileInput = document.getElementById('file-input');
+        const xrayPreview = document.getElementById('xray-preview');
+        const ailmentsList = document.getElementById('ailments-list');
+        const reportText = document.getElementById('report-text');
+        const recommendationText = document.getElementById('recommendation-text');
+        const loading = document.getElementById('loading');
+        const runtimeDisplay = document.getElementById('runtime-display');
+
+        fileInput.addEventListener('change', async (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            // Preview local image immediately
+            const reader = new FileReader();
+            reader.onload = (re) => {
+                xrayPreview.innerHTML = `<img src="${re.target.result}" style="width: 100%; height: 100%; object-fit: contain;">`;
+            };
+            reader.readAsDataURL(file);
+
+            // Preparation
+            loading.style.display = 'block';
+            reportText.style.opacity = '0.5';
+            ailmentsList.innerHTML = '';
+            recommendationText.innerText = 'Analyzing...';
+            runtimeDisplay.innerText = '';
+
+            // Upload and Analyze
+            const formData = new FormData();
+            formData.append('file', file);
+
+            try {
+                const response = await fetch('/analyze', {
+                    method: 'POST',
+                    body: formData
+                });
+                const data = await response.json();
+
+                if (data.error) throw new Error(data.error);
+
+                // Update UI
+                loading.style.display = 'none';
+                reportText.style.opacity = '1';
+                reportText.innerText = data.report;
+                recommendationText.innerText = data.recommendation;
+                runtimeDisplay.innerText = `Inference: ${data.runtime}`;
+
+                // Tags
+                if (data.ailments.length > 0) {
+                    ailmentsList.innerHTML = data.ailments.map(a => `<span class="tag">${a}</span>`).join('');
+                } else {
+                    ailmentsList.innerHTML = '<span class="tag" style="background: rgba(63, 185, 80, 0.15); color: var(--accent-green);">No Abnormalities Detected</span>';
+                }
+
+            } catch (err) {
+                console.error(err);
+                loading.style.display = 'none';
+                reportText.innerText = "Error: " + err.message;
+            }
+        });
+    </script>
+</body>
+
+</html>
