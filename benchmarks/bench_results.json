@@ -1,0 +1,230 @@
+{
+    "metrics": {
+        "overall": {
+            "macro_f1": 0.29055745968374086,
+            "macro_precision": 0.19462576943684992,
+            "macro_recall": 0.7014927951666482,
+            "mean_auc": 0.6950870687813515
+        },
+        "per_class": {
+            "No Finding": {
+                "f1": 0.43031331995678346,
+                "auc": 0.7079213820193699,
+                "confusion_matrix": [
+                    [
+                        4025,
+                        7076
+                    ],
+                    [
+                        306,
+                        2788
+                    ]
+                ]
+            },
+            "Enlarged Cardiomediastinum": {
+                "f1": 0.4014711892112791,
+                "auc": 0.7312328683669844,
+                "confusion_matrix": [
+                    [
+                        4416,
+                        7058
+                    ],
+                    [
+                        265,
+                        2456
+                    ]
+                ]
+            },
+            "Cardiomegaly": {
+                "f1": 0.16221959858323495,
+                "auc": 0.6893383019142107,
+                "confusion_matrix": [
+                    [
+                        6412,
+                        6931
+                    ],
+                    [
+                        165,
+                        687
+                    ]
+                ]
+            },
+            "Lung Opacity": {
+                "f1": 0.36181210094253574,
+                "auc": 0.796647017045923,
+                "confusion_matrix": [
+                    [
+                        6113,
+                        6095
+                    ],
+                    [
+                        202,
+                        1785
+                    ]
+                ]
+            },
+            "Lung Lesion": {
+                "f1": 0.1563510650161704,
+                "auc": 0.6588483971142006,
+                "confusion_matrix": [
+                    [
+                        5929,
+                        7387
+                    ],
+                    [
+                        178,
+                        701
+                    ]
+                ]
+            },
+            "Edema": {
+                "f1": 0.02178649237472767,
+                "auc": 0.5358854404140032,
+                "confusion_matrix": [
+                    [
+                        13741,
+                        113
+                    ],
+                    [
+                        336,
+                        5
+                    ]
+                ]
+            },
+            "Consolidation": {
+                "f1": 0.09850651414045122,
+                "auc": 0.6203161598216463,
+                "confusion_matrix": [
+                    [
+                        11203,
+                        2467
+                    ],
+                    [
+                        370,
+                        155
+                    ]
+                ]
+            },
+            "Pneumonia": {
+                "f1": 0.3897421445681274,
+                "auc": 0.671132787092927,
+                "confusion_matrix": [
+                    [
+                        2767,
+                        8390
+                    ],
+                    [
+                        272,
+                        2766
+                    ]
+                ]
+            },
+            "Atelectasis": {
+                "f1": 0.6330546962416903,
+                "auc": 0.7663911230665996,
+                "confusion_matrix": [
+                    [
+                        3811,
+                        4965
+                    ],
+                    [
+                        610,
+                        4809
+                    ]
+                ]
+            },
+            "Pneumothorax": {
+                "f1": 0.47052913596784995,
+                "auc": 0.7792359128921469,
+                "confusion_matrix": [
+                    [
+                        5061,
+                        6048
+                    ],
+                    [
+                        276,
+                        2810
+                    ]
+                ]
+            },
+            "Pleural Effusion": {
+                "f1": 0.005988023952095809,
+                "auc": 0.6458169677926159,
+                "confusion_matrix": [
+                    [
+                        13862,
+                        141
+                    ],
+                    [
+                        191,
+                        1
+                    ]
+                ]
+            },
+            "Pleural Other": {
+                "f1": 0.2667133847231955,
+                "auc": 0.6098538261292621,
+                "confusion_matrix": [
+                    [
+                        1828,
+                        10331
+                    ],
+                    [
+                        133,
+                        1903
+                    ]
+                ]
+            },
+            "Fracture": {
+                "f1": 0.13283884018880648,
+                "auc": 0.7086674733070256,
+                "confusion_matrix": [
+                    [
+                        8657,
+                        4955
+                    ],
+                    [
+                        189,
+                        394
+                    ]
+                ]
+            },
+            "Support Devices": {
+                "f1": 0.5364779297054235,
+                "auc": 0.8099313059620084,
+                "confusion_matrix": [
+                    [
+                        6221,
+                        4656
+                    ],
+                    [
+                        395,
+                        2923
+                    ]
+                ]
+            }
+        },
+        "mean_rouge_l": 0.10256540030926668,
+        "std_rouge_l": 0.04694165885328504,
+        "evaluation_details": {
+            "classification_n": 14195,
+            "rouge_n": 69,
+            "classification_time_s": 332.4,
+            "generation_time_s": 270.8
+        }
+    },
+    "resources": {
+        "memory": {
+            "initial": "401.5 MB",
+            "after_load": "269.3 MB",
+            "peak_active": "75.8 MB",
+            "delta_allocation": "-325.7 MB"
+        },
+        "hardware": "mps"
+    },
+    "metadata": {
+        "platform": "Edge-class hardware (Apple M2 8GB)",
+        "benchmark_date": "2026-05-01T01:26:25.719820",
+        "note": "Classification evaluated on full test set (n=14195). ROUGE-L evaluated on 69-sample subset."
+    }
+}

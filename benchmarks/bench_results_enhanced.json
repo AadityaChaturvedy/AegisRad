@@ -1,0 +1,541 @@
+{
+    "classification": {
+        "n": 14195,
+        "fixed_threshold": {
+            "thresholds": [
+                0.5,
+                0.5,
+                0.5,
+                0.5,
+                0.5,
+                0.5,
+                0.5,
+                0.5,
+                0.5,
+                0.5,
+                0.5,
+                0.5,
+                0.5,
+                0.5
+            ],
+            "metrics": {
+                "overall": {
+                    "macro_f1": 0.29055745968374086,
+                    "macro_precision": 0.19462576943684992,
+                    "macro_recall": 0.7014927951666482,
+                    "mean_auc": 0.6950870687813515
+                },
+                "per_class": {
+                    "No Finding": {
+                        "f1": 0.43031331995678346,
+                        "auc": 0.7079213820193699,
+                        "threshold": 0.5,
+                        "positive_cases": 3094,
+                        "confusion_matrix": [
+                            [
+                                4025,
+                                7076
+                            ],
+                            [
+                                306,
+                                2788
+                            ]
+                        ]
+                    },
+                    "Enlarged Cardiomediastinum": {
+                        "f1": 0.4014711892112791,
+                        "auc": 0.7312328683669844,
+                        "threshold": 0.5,
+                        "positive_cases": 2721,
+                        "confusion_matrix": [
+                            [
+                                4416,
+                                7058
+                            ],
+                            [
+                                265,
+                                2456
+                            ]
+                        ]
+                    },
+                    "Cardiomegaly": {
+                        "f1": 0.16221959858323495,
+                        "auc": 0.6893383019142107,
+                        "threshold": 0.5,
+                        "positive_cases": 852,
+                        "confusion_matrix": [
+                            [
+                                6412,
+                                6931
+                            ],
+                            [
+                                165,
+                                687
+                            ]
+                        ]
+                    },
+                    "Lung Opacity": {
+                        "f1": 0.36181210094253574,
+                        "auc": 0.796647017045923,
+                        "threshold": 0.5,
+                        "positive_cases": 1987,
+                        "confusion_matrix": [
+                            [
+                                6113,
+                                6095
+                            ],
+                            [
+                                202,
+                                1785
+                            ]
+                        ]
+                    },
+                    "Lung Lesion": {
+                        "f1": 0.1563510650161704,
+                        "auc": 0.6588483971142006,
+                        "threshold": 0.5,
+                        "positive_cases": 879,
+                        "confusion_matrix": [
+                            [
+                                5929,
+                                7387
+                            ],
+                            [
+                                178,
+                                701
+                            ]
+                        ]
+                    },
+                    "Edema": {
+                        "f1": 0.02178649237472767,
+                        "auc": 0.5358854404140032,
+                        "threshold": 0.5,
+                        "positive_cases": 341,
+                        "confusion_matrix": [
+                            [
+                                13741,
+                                113
+                            ],
+                            [
+                                336,
+                                5
+                            ]
+                        ]
+                    },
+                    "Consolidation": {
+                        "f1": 0.09850651414045122,
+                        "auc": 0.6203161598216463,
+                        "threshold": 0.5,
+                        "positive_cases": 525,
+                        "confusion_matrix": [
+                            [
+                                11203,
+                                2467
+                            ],
+                            [
+                                370,
+                                155
+                            ]
+                        ]
+                    },
+                    "Pneumonia": {
+                        "f1": 0.3897421445681274,
+                        "auc": 0.671132787092927,
+                        "threshold": 0.5,
+                        "positive_cases": 3038,
+                        "confusion_matrix": [
+                            [
+                                2767,
+                                8390
+                            ],
+                            [
+                                272,
+                                2766
+                            ]
+                        ]
+                    },
+                    "Atelectasis": {
+                        "f1": 0.6330546962416903,
+                        "auc": 0.7663911230665996,
+                        "threshold": 0.5,
+                        "positive_cases": 5419,
+                        "confusion_matrix": [
+                            [
+                                3811,
+                                4965
+                            ],
+                            [
+                                610,
+                                4809
+                            ]
+                        ]
+                    },
+                    "Pneumothorax": {
+                        "f1": 0.47052913596784995,
+                        "auc": 0.7792359128921469,
+                        "threshold": 0.5,
+                        "positive_cases": 3086,
+                        "confusion_matrix": [
+                            [
+                                5061,
+                                6048
+                            ],
+                            [
+                                276,
+                                2810
+                            ]
+                        ]
+                    },
+                    "Pleural Effusion": {
+                        "f1": 0.005988023952095809,
+                        "auc": 0.6458169677926159,
+                        "threshold": 0.5,
+                        "positive_cases": 192,
+                        "confusion_matrix": [
+                            [
+                                13862,
+                                141
+                            ],
+                            [
+                                191,
+                                1
+                            ]
+                        ]
+                    },
+                    "Pleural Other": {
+                        "f1": 0.2667133847231955,
+                        "auc": 0.6098538261292621,
+                        "threshold": 0.5,
+                        "positive_cases": 2036,
+                        "confusion_matrix": [
+                            [
+                                1828,
+                                10331
+                            ],
+                            [
+                                133,
+                                1903
+                            ]
+                        ]
+                    },
+                    "Fracture": {
+                        "f1": 0.13283884018880648,
+                        "auc": 0.7086674733070256,
+                        "threshold": 0.5,
+                        "positive_cases": 583,
+                        "confusion_matrix": [
+                            [
+                                8657,
+                                4955
+                            ],
+                            [
+                                189,
+                                394
+                            ]
+                        ]
+                    },
+                    "Support Devices": {
+                        "f1": 0.5364779297054235,
+                        "auc": 0.8099313059620084,
+                        "threshold": 0.5,
+                        "positive_cases": 3318,
+                        "confusion_matrix": [
+                            [
+                                6221,
+                                4656
+                            ],
+                            [
+                                395,
+                                2923
+                            ]
+                        ]
+                    }
+                }
+            }
+        },
+        "optimized_threshold": {
+            "thresholds": [
+                0.5643797516822815,
+                0.5963554978370667,
+                0.577094554901123,
+                0.6441775560379028,
+                0.5712869763374329,
+                0.4329487979412079,
+                0.5102459192276001,
+                0.5764009356498718,
+                0.56073397397995,
+                0.6020482778549194,
+                0.4307454824447632,
+                0.5596961379051208,
+                0.5581665635108948,
+                0.6076148152351379
+            ],
+            "metrics": {
+                "overall": {
+                    "macro_f1": 0.3221610315281098,
+                    "macro_precision": 0.2441453006420323,
+                    "macro_recall": 0.553964033457217,
+                    "mean_auc": 0.6950870687813515
+                },
+                "per_class": {
+                    "No Finding": {
+                        "f1": 0.45776722090261285,
+                        "auc": 0.7079213820193699,
+                        "threshold": 0.5643797516822815,
+                        "positive_cases": 3094,
+                        "confusion_matrix": [
+                            [
+                                6079,
+                                5022
+                            ],
+                            [
+                                685,
+                                2409
+                            ]
+                        ]
+                    },
+                    "Enlarged Cardiomediastinum": {
+                        "f1": 0.4411214953271028,
+                        "auc": 0.7312328683669844,
+                        "threshold": 0.5963554978370667,
+                        "positive_cases": 2721,
+                        "confusion_matrix": [
+                            [
+                                7940,
+                                3534
+                            ],
+                            [
+                                951,
+                                1770
+                            ]
+                        ]
+                    },
+                    "Cardiomegaly": {
+                        "f1": 0.1813692480359147,
+                        "auc": 0.6893383019142107,
+                        "threshold": 0.577094554901123,
+                        "positive_cases": 852,
+                        "confusion_matrix": [
+                            [
+                                10144,
+                                3199
+                            ],
+                            [
+                                448,
+                                404
+                            ]
+                        ]
+                    },
+                    "Lung Opacity": {
+                        "f1": 0.4399282725642558,
+                        "auc": 0.796647017045923,
+                        "threshold": 0.6441775560379028,
+                        "positive_cases": 1987,
+                        "confusion_matrix": [
+                            [
+                                10280,
+                                1928
+                            ],
+                            [
+                                883,
+                                1104
+                            ]
+                        ]
+                    },
+                    "Lung Lesion": {
+                        "f1": 0.1726179795442311,
+                        "auc": 0.6588483971142006,
+                        "threshold": 0.5712869763374329,
+                        "positive_cases": 879,
+                        "confusion_matrix": [
+                            [
+                                9103,
+                                4213
+                            ],
+                            [
+                                398,
+                                481
+                            ]
+                        ]
+                    },
+                    "Edema": {
+                        "f1": 0.05179669796050502,
+                        "auc": 0.5358854404140032,
+                        "threshold": 0.4329487979412079,
+                        "positive_cases": 341,
+                        "confusion_matrix": [
+                            [
+                                8177,
+                                5677
+                            ],
+                            [
+                                181,
+                                160
+                            ]
+                        ]
+                    },
+                    "Consolidation": {
+                        "f1": 0.10808435852372583,
+                        "auc": 0.6203161598216463,
+                        "threshold": 0.5102459192276001,
+                        "positive_cases": 525,
+                        "confusion_matrix": [
+                            [
+                                12042,
+                                1628
+                            ],
+                            [
+                                402,
+                                123
+                            ]
+                        ]
+                    },
+                    "Pneumonia": {
+                        "f1": 0.4255584415584416,
+                        "auc": 0.671132787092927,
+                        "threshold": 0.5764009356498718,
+                        "positive_cases": 3038,
+                        "confusion_matrix": [
+                            [
+                                6618,
+                                4539
+                            ],
+                            [
+                                990,
+                                2048
+                            ]
+                        ]
+                    },
+                    "Atelectasis": {
+                        "f1": 0.6498442367601246,
+                        "auc": 0.7663911230665996,
+                        "threshold": 0.56073397397995,
+                        "positive_cases": 5419,
+                        "confusion_matrix": [
+                            [
+                                5527,
+                                3249
+                            ],
+                            [
+                                1247,
+                                4172
+                            ]
+                        ]
+                    },
+                    "Pneumothorax": {
+                        "f1": 0.5178379668297339,
+                        "auc": 0.7792359128921469,
+                        "threshold": 0.6020482778549194,
+                        "positive_cases": 3086,
+                        "confusion_matrix": [
+                            [
+                                7984,
+                                3125
+                            ],
+                            [
+                                916,
+                                2170
+                            ]
+                        ]
+                    },
+                    "Pleural Effusion": {
+                        "f1": 0.04972710733778047,
+                        "auc": 0.6458169677926159,
+                        "threshold": 0.4307454824447632,
+                        "positive_cases": 192,
+                        "confusion_matrix": [
+                            [
+                                12587,
+                                1416
+                            ],
+                            [
+                                151,
+                                41
+                            ]
+                        ]
+                    },
+                    "Pleural Other": {
+                        "f1": 0.2873748789150791,
+                        "auc": 0.6098538261292621,
+                        "threshold": 0.5596961379051208,
+                        "positive_cases": 2036,
+                        "confusion_matrix": [
+                            [
+                                6239,
+                                5920
+                            ],
+                            [
+                                701,
+                                1335
+                            ]
+                        ]
+                    },
+                    "Fracture": {
+                        "f1": 0.15252248728979273,
+                        "auc": 0.7086674733070256,
+                        "threshold": 0.5581665635108948,
+                        "positive_cases": 583,
+                        "confusion_matrix": [
+                            [
+                                11833,
+                                1779
+                            ],
+                            [
+                                388,
+                                195
+                            ]
+                        ]
+                    },
+                    "Support Devices": {
+                        "f1": 0.5747040498442367,
+                        "auc": 0.8099313059620084,
+                        "threshold": 0.6076148152351379,
+                        "positive_cases": 3318,
+                        "confusion_matrix": [
+                            [
+                                8476,
+                                2401
+                            ],
+                            [
+                                1012,
+                                2306
+                            ]
+                        ]
+                    }
+                }
+            }
+        },
+        "classification_time_s": 288.4
+    },
+    "report_generation": {
+        "n": 69,
+        "mean_rouge_l": 0.10256540030926668,
+        "std_rouge_l": 0.04694165885328504
+    },
+    "translation": {
+        "Hindi": {
+            "n_reports": 15,
+            "chrf_score": 6.154025213338506,
+            "avg_source_tokens": 69.26666666666667,
+            "avg_target_tokens": 83.06666666666666,
+            "length_ratio": 1.1992300288739173,
+            "vocabulary_diversity": 0.2808988764044944,
+            "sample_source": "## Radiology Report\n\n**FINDINGS:**  The heart and mediastinum are enlarged. There is evidence of cardiomegaly, lung opacities consistent with pneumonia and consolidation in the right lower lobe. The l",
+            "sample_translation": "## \u0930\u0947\u0921\u093f\u092f\u094b\u0932\u0949\u091c\u0940 \u0930\u093f\u092a\u094b\u0930\u094d\u091f **FINDINGS:** \u0939\u0943\u0926\u092f \u0914\u0930 \u092e\u0927\u094d\u092f\u0938\u094d\u0925 \u0905\u0902\u0917 \u0915\u093e \u0906\u0915\u093e\u0930 \u092c\u0921\u093c\u093e \u0939\u0941\u0906 \u0939\u0948. \u0915\u093e\u0930\u094d\u0921\u093f\u092f\u094b\u092e\u0947\u0917\u093e\u0932\u0940, \u092b\u0947\u092b\u0921\u093c\u094b\u0902 \u0915\u0940 \u0905\u0938\u094d\u092a\u0937\u094d\u091f\u0924\u093e\u090f\u0902 \u0939\u0948\u0902 \u091c\u094b \u0928\u093f\u092e\u094b\u0928\u093f\u092f\u093e \u0915\u0947 \u0938\u093e\u0925 \u092e\u0947\u0932 \u0916\u093e\u0924\u0940 \u0939\u0948\u0902 \u0914\u0930 \u0926\u093e\u0939\u093f\u0928\u0947 \u0928\u093f\u091a\u0932\u0947 \u0932\u094b\u092c \u092e\u0947\u0902 \u0938\u092e\u0947\u0915\u0928 \u0939\u0948\u0964 \u092c\u093e\u090f\u0902 \u0927\u094d\u0930\u0941\u0935 \u0938\u094d\u0925"
+        },
+        "Santali": {
+            "n_reports": 15,
+            "chrf_score": 77.94166963193298,
+            "avg_source_tokens": 69.26666666666667,
+            "avg_target_tokens": 52.666666666666664,
+            "length_ratio": 0.7603464870067372,
+            "vocabulary_diversity": 0.35443037974683544,
+            "sample_source": "## Radiology Report\n\n**FINDINGS:**  The heart and mediastinum are enlarged. There is evidence of cardiomegaly, lung opacities consistent with pneumonia and consolidation in the right lower lobe. The l",
+            "sample_translation": "\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f\ufe0f"
+        }
+    },
+    "metadata": {
+        "platform": "Apple M2 8GB (development proxy)",
+        "benchmark_date": "2026-05-01T01:53:50.080528"
+    }
+}
