@@ -38,22 +38,46 @@ env/
 pip-log.txt
 pip-delete-this-directory.txt
 
-# Models and large weights
-models/
-tes/
+# Node & JS dependencies
+node_modules/
+**/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Documentation & internal reports
+docs/
+
+# Large Model Weights and Checkpoints
+models/*
+!models/.gitkeep
+!models/README.md
 *.safetensors
 *.bin
 *.pth
 *.pt
 *.onnx
+*.trt
+*.engine
 *.gguf
 *.weights
 
-# Data
-data/calib_images/*
-!data/calib_images/.gitkeep
-data/demo_cases/*
-!data/demo_cases/.gitkeep
+# Data directory
+data/
+
+# Installer & Disk Image Binaries
+Miniforge*.sh
+jetson/Miniforge*.sh
+*.img
+*.img.zip
+*.iso
+jetson_backup*
+jetson/jetson_backup*
+
+# Temporary / Scratch files
+/tmp/
+*.tmp
+*.log
 
 # IDEs
 .vscode/
